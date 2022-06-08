@@ -1,0 +1,23 @@
+default: &default
+  adapter: mysql2
+  # host: locallhost
+  encoding: utf8
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: root
+  password: Password@1
+  socket: /var/run/mysqld/mysqld.sock
+  variables:
+    sql_mode: "TRADITIONAL"
+
+development:
+  <<: *default
+  database: food_club_development
+
+test:
+  <<: *default
+  database: food_club_test
+
+production:
+  <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
+  database: food_clube_production
